@@ -63,6 +63,11 @@ export default async function Home() {
         alt="Até 55% de desconto em fones!"
         className="hidden w-0 flex-1 lg:block"
       />
+
+      <div className="flex flex-col gap-3 lg:gap-5">
+        <SectionTitle className="pl-5">Mouses</SectionTitle>
+        <ProductList products={mouses} />
+      </div>
     </div>
   );
 }
