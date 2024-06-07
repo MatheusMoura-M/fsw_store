@@ -1,5 +1,6 @@
 "use client";
 
+import { AvatarFallback } from "@radix-ui/react-avatar";
 import {
   HomeIcon,
   ListOrderedIcon,
@@ -9,12 +10,13 @@ import {
   PercentIcon,
   ShoppingCartIcon,
 } from "lucide-react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
+import { Avatar, AvatarImage } from "./avatar";
 import { Button } from "./button";
 import { Card } from "./card";
+import { Separator } from "./separator";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./sheet";
-import { signIn, signOut, useSession } from "next-auth/react";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Separator } from "@radix-ui/react-separator";
 
 const Header = () => {
   const { status, data } = useSession();
