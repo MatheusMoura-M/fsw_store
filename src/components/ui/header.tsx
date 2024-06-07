@@ -8,7 +8,6 @@ import {
   LogOutIcon,
   MenuIcon,
   PercentIcon,
-  ShoppingCartIcon,
 } from "lucide-react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
@@ -38,7 +37,7 @@ const Header = () => {
           </Button>
         </SheetTrigger>
 
-        <SheetContent side="left">
+        <SheetContent side="left" className="w-[21.875rem]">
           <SheetHeader className="text-left text-lg font-semibold">
             Menu
           </SheetHeader>
@@ -105,13 +104,11 @@ const Header = () => {
         </SheetContent>
       </Sheet>
 
-      <h1 className="text-lg font-semibold">
-        <span className="text-primary">FSW</span> Store
-      </h1>
-
-      <Button size="icon" variant="outline">
-        <ShoppingCartIcon />
-      </Button>
+      <Link href="/">
+        <h1 className="text-lg font-semibold">
+          <span className="text-primary">FSW</span> Store
+        </h1>
+      </Link>
     </Card>
   );
 };
