@@ -3,8 +3,8 @@ import Header from "@/components/ui/header";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "./providers/auth";
-import CartProvider from "./providers/cart";
+import AuthProvider from "@/providers/auth";
+import CartProvider from "@/providers/cart";
 
 const inter = Inter({ subsets: ["latin"] });
 
