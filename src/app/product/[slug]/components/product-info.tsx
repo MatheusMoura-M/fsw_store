@@ -3,17 +3,24 @@
 import { Button } from "@/components/ui/button";
 import DiscountBadge from "@/components/ui/discount-badge";
 import { ProductWithTotalPrice } from "@/helpers/product";
+import { CartContext } from "@/providers/cart";
 import { ArrowLeftIcon, ArrowRightIcon, TruckIcon } from "lucide-react";
+import { useContext, useState } from "react";
 import WishButton from "./WishButton";
-import { useState } from "react";
+import { WishList } from "@prisma/client";
+
+interface ProductWithTotalPriceAndWishLists extends ProductWithTotalPrice {
+  wishLists: WishList[];
+}
 
 interface ProductInfoProps {
   product: ProductWithTotalPriceAndWishLists;
 }
 
 const ProductInfo = ({ product }: ProductInfoProps) => {
-  console.log(product.wishLists);
   const [quantity, setQuantity] = useState(1);
+
+  const { addProductToCart } = useContext(CartContext);
 
   const handleDecreaseQuantityClick = () => {
     setQuantity((prev) => (prev === 1 ? prev : prev - 1));
@@ -21,6 +28,10 @@ const ProductInfo = ({ product }: ProductInfoProps) => {
 
   const handleIncreaseQuantityClick = () => {
     setQuantity((prev) => prev + 1);
+  };
+
+  const handleAddToCartClick = () => {
+    addProductToCart({ ...product, quantity });
   };
 
   return (
