@@ -27,7 +27,7 @@ const WishButton = ({ productId, wishLists }: WishButtonProps) => {
       return;
     }
 
-    await addProductToWishlist(session.user.id, productId);
+    await addProductToWishlist((session.user as any).id, productId);
 
     router.refresh();
 
