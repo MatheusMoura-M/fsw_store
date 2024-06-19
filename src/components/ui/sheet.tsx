@@ -13,7 +13,19 @@ const SheetTrigger = SheetPrimitive.Trigger;
 
 const SheetClose = SheetPrimitive.Close;
 
+<<<<<<< HEAD
 const SheetPortal = SheetPrimitive.Portal;
+=======
+const SheetPortal = ({
+  // @ts-expect-error - `className` is not a valid prop for `DialogPortal`
+  className,
+  ...props
+}: SheetPrimitive.DialogPortalProps) => (
+  // @ts-expect-error - `className` is not a valid prop for `DialogPortal`
+  <SheetPrimitive.Portal className={cn(className)} {...props} />
+);
+SheetPortal.displayName = SheetPrimitive.Portal.displayName;
+>>>>>>> 0d7231b8f47d90894afa0e36d170322c46882de5
 
 const SheetOverlay = React.forwardRef<
   React.ElementRef<typeof SheetPrimitive.Overlay>,
@@ -21,7 +33,11 @@ const SheetOverlay = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
+<<<<<<< HEAD
       "fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+=======
+      "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+>>>>>>> 0d7231b8f47d90894afa0e36d170322c46882de5
       className,
     )}
     {...props}
@@ -66,7 +82,7 @@ const SheetContent = React.forwardRef<
     >
       {children}
       <SheetPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
-        <X className="h-4 w-4" />
+        <X className="h-4 w-4 lg:h-5 lg:w-5" />
         <span className="sr-only">Close</span>
       </SheetPrimitive.Close>
     </SheetPrimitive.Content>
