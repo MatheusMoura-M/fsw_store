@@ -13,6 +13,7 @@ interface WishButtonProps {
   productId: string;
   wishLists: WishList[];
 }
+
 const WishButton = ({ productId, wishLists }: WishButtonProps) => {
   const { data: session } = useSession();
 
@@ -22,6 +23,7 @@ const WishButton = ({ productId, wishLists }: WishButtonProps) => {
 
   const handleAddToWishlist = async () => {
     setLoading(true);
+
     if (!session || !session.user) {
       toast("Você precisa estar logado para adicionar aos favoritos", {
         action: {
