@@ -39,7 +39,7 @@ const Cart = () => {
 
   return (
     <div className="flex h-full flex-col gap-8">
-      <Badge variant="outline">
+      <Badge variant="heading">
         <ShoppingCartIcon size={16} />
         Carrinho
       </Badge>
