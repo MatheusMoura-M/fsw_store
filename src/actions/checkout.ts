@@ -11,8 +11,6 @@ export const createCheckout = async (
     apiVersion: "2024-04-10",
   });
 
-  console.log("AAAA", stripe);
-
   const checkout = await stripe.checkout.sessions.create({
     payment_method_types: ["card"],
     mode: "payment",
@@ -37,7 +35,6 @@ export const createCheckout = async (
     }),
   });
 
-  console.log("BBBB", checkout);
   // RETORNAR O CHECKOUT
   return checkout;
 };
