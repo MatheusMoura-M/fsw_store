@@ -8,7 +8,7 @@ const CatalogPage = async () => {
 
   return (
     <div className="flex flex-col gap-8 p-5">
-      <Badge variant="outline">
+      <Badge variant="heading">
         <ShapesIcon size={16} />
         Catálogo
       </Badge>
