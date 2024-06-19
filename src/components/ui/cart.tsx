@@ -32,9 +32,9 @@ const Cart = () => {
     console.log("STRIPE", stripe);
 
     // Criar pedido no banco
-    stripe?.redirectToCheckout({
-      sessionId: checkout.id,
-    });
+    // stripe?.redirectToCheckout({
+    //   sessionId: checkout.id,
+    // });
   };
 
   return (
