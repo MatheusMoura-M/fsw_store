@@ -5,6 +5,7 @@ import { StarIcon } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 import LoadingButton from "../../../../../components/ui/loading-button";
 import { WishList } from "@prisma/client";
 
@@ -22,14 +23,36 @@ const WishButton = ({ productId, wishLists }: WishButtonProps) => {
   const handleAddToWishlist = async () => {
     setLoading(true);
     if (!session || !session.user) {
-      setLoading(false);
+      toast("Você precisa estar logado para adicionar aos favoritos", {
+        action: {
+          label: "Login",
+          onClick: () => {
+            signIn();
+          },
+        },
+        classNames: {
+          toast: "bg-red-500 border-red-500",
+          title: "text-white",
+          actionButton: "!text-red-500 !bg-white font-bold",
+        },
+      });
 
+      setLoading(false);
       return;
     }
 
-    await addProductToWishlist((session.user as any).id, productId);
+    await addProductToWishlist(session.user.id, productId);
 
     router.refresh();
+
+    toast("Produto adicionado aos favoritos", {
+      action: {
+        label: "Ver favoritos",
+        onClick: () => {
+          router.push("/wish-list");
+        },
+      },
+    });
 
     setLoading(false);
   };
