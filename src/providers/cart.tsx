@@ -38,11 +38,11 @@ export const CartContext = createContext<ICartContext>({
 const CartProvider = ({ children }: { children: ReactNode }) => {
   const [products, setProducts] = useState<CartProduct[]>([]);
   console.log("PRODUCTS", products);
-  useEffect(() => {
-    setProducts(
-      JSON.parse(localStorage.getItem("@fsw-store/cart-products") || "[]"),
-    );
-  }, []);
+  // useEffect(() => {
+  //   setProducts(
+  //     JSON.parse(localStorage.getItem("@fsw-store/cart-products") || "[]"),
+  //   );
+  // }, []);
 
   useEffect(() => {
     console.log("useEffect", products);
