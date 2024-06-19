@@ -15,7 +15,8 @@ import { useSession } from "next-auth/react";
 const Cart = () => {
   const { data } = useSession();
 
-  const { products, subtotal, total, totalDiscount } = useContext(CartContext);
+  const { products, subtotal, total, totalDiscount, setProducts } =
+    useContext(CartContext);
 
   const handleFinishPurchaseClick = async () => {
     if (!data?.user) {
@@ -32,6 +33,8 @@ const Cart = () => {
     stripe?.redirectToCheckout({
       sessionId: checkout.id,
     });
+
+    setProducts([]);
   };
 
   return (
