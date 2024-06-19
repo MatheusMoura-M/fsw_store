@@ -1,10 +1,11 @@
-import Footer from "@/components/ui/footer";
-import Header from "@/components/ui/header";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
+import Header from "@/components/ui/header";
 import AuthProvider from "@/providers/auth";
+import Footer from "@/components/ui/footer";
 import CartProvider from "@/providers/cart";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,9 +16,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -26,6 +27,7 @@ export default function RootLayout({
             <CartProvider>
               <Header />
               <div className="flex-1">{children}</div>
+              <Toaster />
               <Footer />
             </CartProvider>
           </AuthProvider>
