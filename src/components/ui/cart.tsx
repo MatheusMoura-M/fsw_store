@@ -19,15 +19,17 @@ const Cart = () => {
 
   const handleFinishPurchaseClick = async () => {
     if (!data?.user) {
-      // TODO: redirecionar para o login
       return;
     }
 
     const order = await createOrder(products, (data?.user as any).id);
 
+    console.log("ORDER", order);
     const checkout = await createCheckout(products, order.id);
+    console.log("CHECKOUT", checkout);
 
     const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY);
+    console.log("STRIPE", stripe);
 
     // Criar pedido no banco
     stripe?.redirectToCheckout({
