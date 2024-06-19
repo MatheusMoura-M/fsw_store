@@ -1,5 +1,7 @@
 import { prismaClient } from "@/lib/prisma";
+import { CartContext } from "@/providers/cart";
 import { NextResponse } from "next/server";
+import { useContext } from "react";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
@@ -7,6 +9,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 });
 
 export const POST = async (request: Request) => {
+  const { setProducts } = useContext(CartContext);
   const signature = request.headers.get("stripe-signature");
 
   if (!signature) {
@@ -41,6 +44,8 @@ export const POST = async (request: Request) => {
         status: "PAYMENT_CONFIRMED",
       },
     });
+
+    setProducts([]);
   }
 
   return NextResponse.json({ received: true });

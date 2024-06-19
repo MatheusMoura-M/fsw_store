@@ -1,7 +1,15 @@
 "use client";
 
 import { ProductWithTotalPrice } from "@/helpers/product";
-import { ReactNode, createContext, useEffect, useMemo, useState } from "react";
+import {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  createContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 
 export interface CartProduct extends ProductWithTotalPrice {
   quantity: number;
@@ -9,6 +17,7 @@ export interface CartProduct extends ProductWithTotalPrice {
 
 interface ICartContext {
   products: CartProduct[];
+  setProducts: Dispatch<SetStateAction<CartProduct[]>>;
   cartTotalPrice: number;
   cartBasePrice: number;
   cartTotalDiscount: number;
@@ -23,6 +32,7 @@ interface ICartContext {
 
 export const CartContext = createContext<ICartContext>({
   products: [],
+  setProducts: () => {},
   cartTotalPrice: 0,
   cartBasePrice: 0,
   cartTotalDiscount: 0,
@@ -135,6 +145,7 @@ const CartProvider = ({ children }: { children: ReactNode }) => {
     <CartContext.Provider
       value={{
         products,
+        setProducts,
         addProductToCart,
         decreaseProductQuantity,
         increaseProductQuantity,
