@@ -5,7 +5,7 @@ import { StarIcon } from "lucide-react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import LoadingButton from "../../../../components/ui/loading-button";
+import LoadingButton from "../../../../../components/ui/loading-button";
 import { WishList } from "@prisma/client";
 
 interface WishButtonProps {
